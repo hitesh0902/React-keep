@@ -5,11 +5,14 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-// import rootReducer from "./reducers/rootReducer";
 import notesReducer from "./reducers/notesReducer";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = createStore(notesReducer, applyMiddleware(thunk));
+const store = createStore(
+  notesReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 ReactDOM.render(
   <React.StrictMode>

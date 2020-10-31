@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,6 +10,9 @@ import Popup from "./Popup";
 import Form from "./Form";
 import { useSelector } from "react-redux";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import { useDispatch } from "react-redux";
+import { FetchDataAction } from "../actions/NotesAction";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   cardHeight: {
@@ -40,11 +43,19 @@ const useStyles = makeStyles((theme) => ({
 const Notes = () => {
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(FetchDataAction());
+  }, [dispatch]);
+
   const [modal, setModal] = useState(false);
 
   const [cardId, setCardId] = useState(null);
 
   const notes = useSelector((state) => state.notes);
+
+  const loading = useSelector((state) => state.isLoading);
 
   const handleModalOpen = (id) => {
     setCardId(id);
@@ -52,6 +63,17 @@ const Notes = () => {
   };
 
   const handleModalClose = () => setModal(false);
+
+  if (loading) {
+    return (
+      <React.Fragment>
+        <Form />
+        <Grid container justify="center">
+          <CircularProgress color="secondary" />
+        </Grid>
+      </React.Fragment>
+    );
+  }
 
   const notesList = notes.length ? (
     notes
@@ -94,7 +116,9 @@ const Notes = () => {
       ))
       .reverse()
   ) : (
-    <div style={{ textAlign: "center" }}>No Notes to display</div>
+    <div style={{ textAlign: "center", width: "100%" }}>
+      No Notes to display
+    </div>
   );
 
   return (
