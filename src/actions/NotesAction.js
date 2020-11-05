@@ -1,5 +1,5 @@
 // URL
-const url = "http://localhost:5000/notes";
+const url = process.env.REACT_APP_API_URL;
 
 // For loading spinner
 const notesLoading = (dispatch) =>
@@ -16,7 +16,7 @@ export const FetchDataAction = () => {
       const data = await res.json();
       dispatch({ type: "FETCH_NOTES", notes: data });
       notesDoneLoading(dispatch);
-    }, 1000);
+    }, 500);
   };
 };
 

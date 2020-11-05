@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Tooltip from "@material-ui/core/ToolTip";
+import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +44,15 @@ const Navbar = () => {
             </IconButton>
           </Tooltip>
           <Tooltip title="Source Code">
-            <IconButton color="inherit">
-              <GitHubIcon />
-            </IconButton>
+            <Link
+              href="https://github.com/hitesh0902/React-keep"
+              color="inherit"
+              target="_blank"
+            >
+              <IconButton color="inherit">
+                <GitHubIcon />
+              </IconButton>
+            </Link>
           </Tooltip>
         </Toolbar>
       </AppBar>

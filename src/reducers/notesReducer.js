@@ -10,11 +10,7 @@ const notesReducer = (state = initalState, action) => {
     return { ...state, notes: action.notes };
   }
   if (action.type === "ADD_NOTE") {
-    console.log(action);
-    if (action.note) {
-      return { ...state, notes: [...state.notes, action.note] };
-    }
-    return state;
+    return { ...state, notes: [...state.notes, action.note] };
   }
   if (action.type === "UPDATE_NOTE") {
     const notes = [...state.notes];
@@ -26,13 +22,12 @@ const notesReducer = (state = initalState, action) => {
       ...notes[index],
       title: action.updatedNote.title,
       body: action.updatedNote.body,
+      bgColor: action.updatedNote.bgColor,
     };
-    console.log(action);
     return { ...state, notes };
   }
   if (action.type === "DELETE_NOTE") {
     const notes = state.notes.filter((note) => note.id !== action.id);
-    console.log(notes, action);
     return { ...state, notes };
   }
   return state;

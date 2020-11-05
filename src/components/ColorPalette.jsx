@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ColorPalette = ({ anchorEl, handleClose }) => {
+const ColorPalette = ({ anchorEl, handleClose, setBgColor }) => {
   const classes = useStyles();
   return (
     <div>
@@ -34,33 +34,69 @@ const ColorPalette = ({ anchorEl, handleClose }) => {
         className={classes.menu}
       >
         <Box display="flex">
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
+          <MenuItem
+            onClick={() => {
+              setBgColor("white");
+              handleClose();
+            }}
+            className={classes.menuItem}
+          >
             <FiberManualRecordOutlinedIcon />
           </MenuItem>
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
-            <FiberManualRecordIcon style={{ color: "pink" }} />
+          <MenuItem
+            onClick={() => {
+              setBgColor("#f8bbd0");
+              handleClose();
+            }}
+            className={classes.menuItem}
+          >
+            <FiberManualRecordIcon style={{ color: "#f8bbd0" }} />
           </MenuItem>
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
-            <FiberManualRecordIcon style={{ color: "blue" }} />
+          <MenuItem
+            onClick={() => {
+              setBgColor("#b2ebf2");
+              handleClose();
+            }}
+            className={classes.menuItem}
+          >
+            <FiberManualRecordIcon style={{ color: "#b2ebf2" }} />
           </MenuItem>
         </Box>
         <Box display="flex">
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
+          <MenuItem
+            onClick={() => {
+              setBgColor("#ff8a80");
+              handleClose();
+            }}
+            className={classes.menuItem}
+          >
             <FiberManualRecordIcon
               style={{
-                color: "orange",
+                color: "#ff8a80",
               }}
             />
           </MenuItem>
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
+          <MenuItem
+            onClick={() => {
+              setBgColor("#ffff8d");
+              handleClose();
+            }}
+            className={classes.menuItem}
+          >
             <FiberManualRecordIcon
               style={{
-                color: "yellow",
+                color: "#ffff8d",
               }}
             />
           </MenuItem>
-          <MenuItem onClick={handleClose} className={classes.menuItem}>
-            <FiberManualRecordIcon style={{ color: "green" }} />
+          <MenuItem
+            onClick={() => {
+              setBgColor("#ccff90");
+              handleClose();
+            }}
+            className={classes.menuItem}
+          >
+            <FiberManualRecordIcon style={{ color: "#ccff90" }} />
           </MenuItem>
         </Box>
       </Menu>

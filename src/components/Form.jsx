@@ -14,7 +14,7 @@ import ColorPalette from "./ColorPalette";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
     borderRadius: 4,
     padding: "8px 8px 0",
@@ -40,6 +40,8 @@ const Form = () => {
 
   const [body, setBody] = useState("");
 
+  const [bgColor, setBgColor] = useState("white");
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -54,7 +56,7 @@ const Form = () => {
     event.preventDefault();
 
     if (title.length && body.length) {
-      const note = { id: uuidv4(), title, body };
+      const note = { id: uuidv4(), title, body, bgColor };
       dispatch(addNoteAction(note));
       setTitle("");
       setBody("");
@@ -64,7 +66,12 @@ const Form = () => {
   return (
     <Container maxWidth="sm" style={{ margin: "40px auto" }}>
       <form onSubmit={handleSubmit}>
-        <Grid container spacing={2} className={classes.paper}>
+        <Grid
+          container
+          spacing={2}
+          style={{ backgroundColor: bgColor }}
+          className={classes.paper}
+        >
           <Grid item container>
             <InputBase
               type="text"
@@ -115,7 +122,11 @@ const Form = () => {
               <IconButton onClick={handleClick}>
                 <PaletteOutlinedIcon />
               </IconButton>
-              <ColorPalette anchorEl={anchorEl} handleClose={handleClose} />
+              <ColorPalette
+                anchorEl={anchorEl}
+                handleClose={handleClose}
+                setBgColor={setBgColor}
+              />
             </Grid>
             <Grid item>
               <Button type="submit">Submit</Button>
