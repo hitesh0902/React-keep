@@ -1,5 +1,5 @@
 // URL
-const url = process.env.REACT_APP_API_URL;
+const url = "/notes/";
 
 // For loading spinner
 const notesLoading = (dispatch) =>
@@ -24,6 +24,7 @@ export const addNoteAction = (note) => {
   return async (dispatch) => {
     notesLoading(dispatch);
     setTimeout(async () => {
+      await console.log(JSON.stringify(note));
       await fetch(url, {
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ export const updateNoteAction = (updatedNote) => {
         },
         body: JSON.stringify(updatedNote),
       });
-      dispatch({ type: "UPDATE_NOTE", updatedNote });
+      await dispatch({ type: "UPDATE_NOTE", updatedNote });
       notesDoneLoading(dispatch);
     }, 500);
   };
